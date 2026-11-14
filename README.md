@@ -1,62 +1,190 @@
-<img width="1449" height="811" alt="image" src="https://github.com/user-attachments/assets/2c74bf62-0800-4d1f-8fd2-ff6b50f89819" /># smoking-exposure-organ-health-analysis
-# Smoking & Organ Health Analysis — Synthetic Dataset
+# Smoking Exposure & Simulated Organ Health Analysis
 
-## Files
-- `patients.csv`: one row per synthetic patient (10,000 rows).
-- `organ_assessments.csv`: one row per patient-organ pair (50,000 rows; 5 organs per patient).
-- `conditions.csv`: one row per flagged condition per patient (long format).
-- `organ_image_lookup.csv`: organ/status lookup table for dynamic-image design. `image_url` is intentionally blank; add image URLs you have permission to use.
+## Project Overview
 
-## Suggested Power BI relationships
-- `patients[patient_id]` (1) -> `organ_assessments[patient_id]` (*)
-- `patients[patient_id]` (1) -> `conditions[patient_id]` (*)
-- `organ_image_lookup[organ]` and status fields are lookup attributes for the visual logic. Depending on your model design, create a combined key in both tables (`organ & "|" & status`) to relate it to `organ_assessments`.
+This project explores the relationship between smoking patterns, cumulative smoking exposure, patient demographics and simulated organ health outcomes using a synthetic healthcare dataset.
 
-## Important interpretation note
-Every record is synthetic and generated for portfolio practice. No real patient records are included.
-`simulated_organ_status` and `simulated_severity_score` are artificial demonstration fields generated using predefined rules and random variation based on age, smoking exposure, BMI, cholesterol, blood pressure, activity, and selected family-history inputs. These labels are NOT clinical diagnoses, validated medical risk scores, or evidence that smoking caused a particular organ condition.
+The project follows an end-to-end data analytics workflow using Python, SQL and Power BI to perform data exploration, data analysis and interactive dashboard development.
 
-The dataset intentionally contains relationships between some inputs and simulated organ labels because it is designed for practising data modelling, DAX, filtering, and exploratory dashboard design. Do not describe those relationships as discoveries about real patients or use them to make medical recommendations.
 
-## Column guide
+## Objectives
 
-### patients.csv
-- `patient_id`: synthetic unique identifier.
-- `age`: age in years (18–85).
-- `gender`: Female, Male, Other.
-- `smoking_status`: Never, Former, Current.
-- `cigarettes_per_day`: generated daily amount; 0 for Never.
-- `years_smoking`: generated exposure duration; 0 for Never.
-- `pack_years`: cigarettes-per-day × years-smoked / 20.
-- `bmi`: generated BMI (kg/m²).
-- `total_cholesterol_mg_dl`: generated total cholesterol (mg/dL).
-- `systolic_bp_mmhg`, `diastolic_bp_mmhg`: generated blood pressure values (mmHg).
-- `fasting_glucose_mg_dl`: generated fasting glucose (mg/dL).
-- `physical_activity`: Low, Moderate, High.
-- `diet_quality`: Needs improvement, Average, Balanced.
-- `alcohol_use`: Never, Occasional, Frequent.
-- `family_history_cardiovascular`: Yes, No.
+- Analyze patient demographics and smoking status distribution.
+- Explore smoking exposure through cigarettes per day, years of smoking and pack-years.
+- Examine the distribution of flagged health conditions.
+- Analyze simulated organ health status across different organs.
+- Compare simulated organ severity scores across smoking groups.
+- Identify patients with multiple simulated organ damage flags.
+- Develop interactive dashboards to present analytical findings.
 
-### organ_assessments.csv
-- `patient_id`: joins to patients.
-- `organ`: Heart, Lungs, Kidneys, Liver, Brain.
-- `simulated_organ_status`: Healthy, At Risk, Damaged.
-- `simulated_severity_score`: artificial score from 0 to 100; not clinically validated.
-- `largest_simulated_score_component`: largest input component in the artificial scoring formula; not a clinical explanation.
+## Tools & Technologies
 
-### conditions.csv
-- `patient_id`: joins to patients.
-- `condition_name`: generated flag based on a simple threshold/rule.
-- `condition_status`: Flagged. These are analytical flags, not confirmed diagnoses.
+- **Python:** Data exploration and analysis
+- **Pandas:** Data cleaning and manipulation
+- **MySQL:** Data storage and SQL analysis
+- **Power BI:** Interactive dashboard development
+- **DAX:** Measures, calculated metrics and dynamic visualizations
+- **GitHub:** Project version control and documentation
 
-### organ_image_lookup.csv
-- `organ`, `simulated_organ_status`: lookup combination.
-- `image_key`: unique text key for each organ/status combination.
-- `image_url`: blank field for your chosen licensed image URL.
-- `image_note`: reminder about image rights.
+## Dataset Description
 
-## Suggested project title
-**Smoking Exposure & Simulated Organ Health: An Interactive Power BI Exploration**
+The project uses four CSV files containing synthetic patient and organ assessment information.
 
-## Suggested disclosure for GitHub/LinkedIn
-"This project uses a fully synthetic dataset created for portfolio practice. Organ-status labels and severity scores are simulated using predefined rules and random variation; they are not clinical diagnoses or real-world medical findings. The dashboard demonstrates data modelling, DAX, filtering, and visual storytelling."
+| Dataset | Records | Description |
+|---|---:|---|
+| `patients.csv` | 10,000 | Patient demographics, smoking history, and health measurements |
+| `organ_assessments.csv` | 50,000 | Simulated health assessments across five organs |
+| `conditions.csv` | 13,331 | Flagged health conditions associated with patients |
+| `organ_image_lookup.csv` | 15 | Organ images mapped to simulated health status |
+
+### Key Dataset Attributes
+
+**Patient Information**
+- Patient ID
+- Age
+- Gender
+- Smoking status
+- Cigarettes per day
+- Years of smoking
+- Pack-years
+- BMI
+- Cholesterol
+- Systolic and diastolic blood pressure
+
+**Organ Assessment Information**
+- Organ
+- Simulated organ health status
+- Simulated severity score
+- Largest simulated score component
+
+**Organs Covered**
+- Brain
+- Heart
+- Kidneys
+- Liver
+- Lungs
+
+**Simulated Organ Health Categories**
+- Healthy
+- At Risk
+- Damaged
+
+The simulated severity score ranges from 0 to 100 and is categorized as follows:
+
+| Simulated Health Status | Severity Score |
+|---|---:|
+| Healthy | 0–34 |
+| At Risk | 35–64 |
+| Damaged | 65–100 |
+
+These thresholds are part of the synthetic dataset's scoring design and are not medical reference ranges.
+
+## Project Workflow
+
+### 1. Data Exploration and Analysis – Python
+
+- Analyzed the distribution of Never, Former, and Current smokers.
+- Calculated average patient age, BMI, cholesterol, blood pressure, and glucose levels.
+- Examined unique patient counts across all datasets.
+- Validated organ assessment completeness by checking whether each patient had exactly five organ assessments.
+- Identified duplicate patient-organ combinations.
+- Verified the consistency of pack-year calculations against smoking exposure.
+- Explored smoking status distribution across gender and age groups.
+- Analyzed the percentage distribution of Healthy, At Risk, and Damaged organ assessments across the five organs.
+
+**Python Libraries Used**
+- Pandas
+- Matplotlib
+  
+### 2. Data Analysis – SQL
+
+- Imported datasets into MySQL.
+- Created relational tables with primary and foreign key constraints.
+- Used SQL queries to analyze patient demographics and smoking patterns.
+- Calculated average smoking exposure and pack-years.
+- Compared simulated organ severity across smoking groups.
+- Identified damaged organ assessments and patients with multiple damaged organ flags.
+- Examined cholesterol and blood pressure measurements.
+
+**SQL Concepts Used**
+- SELECT, WHERE, ORDER BY
+- GROUP BY and HAVING
+- Aggregate functions
+- CASE statements
+- JOIN operations
+- Subqueries
+- Common Table Expressions (CTEs)
+- Window functions
+
+### 3. Interactive Dashboard Development – Power BI
+
+Developed a three-page interactive Power BI report.
+
+#### Dashboard 1: Patient & Smoking Overview
+<img width="1456" height="815" alt="image" src="https://github.com/user-attachments/assets/11512d68-1b9f-4537-a9a6-f61a086c9a45" />
+
+Focuses on patient demographics, smoking patterns and exposure history.
+
+Key analyses:
+- Patient distribution by smoking status.
+- Average pack-years across smoking groups.
+- Smoking status distribution across age groups.
+- Most frequently flagged conditions.
+
+#### Dashboard 2: Organ Health Assessment
+<img width="1453" height="814" alt="image" src="https://github.com/user-attachments/assets/d8769fb9-9801-4aeb-9157-56be6b21a2c0" />
+
+Explores the distribution of simulated organ health outcomes.
+
+Key analyses:
+- Healthy, At Risk, and Damaged assessment distributions.
+- Average simulated severity by organ.
+- Damaged assessments across organs.
+- Organ health status distribution.
+- Dynamic organ images based on selected organ and health status.
+
+#### Dashboard 3: Smoking Exposure & Risk Analysis
+<img width="1449" height="811" alt="image" src="https://github.com/user-attachments/assets/09896def-10e6-4f2e-adaa-4ac155e4c592" />
+
+Explores smoking exposure in relation to simulated organ health outcomes.
+
+Key analyses:
+- Damaged organ assessments by smoking status.
+- Average simulated severity by smoking status.
+- Organ health status distribution across smoking groups.
+- Flagged conditions across smoking groups.
+- Average smoking exposure by age group.
+
+### Dashboard Features
+
+- Interactive slicers for patient demographics, smoking status, organ and simulated health status.
+- DAX measures for dynamic KPI calculations.
+- Dynamic chart colouring based on selected health status.
+- Organ-specific images using image URL mapping and DAX.
+- Synchronized slicers across report pages.
+
+## Key Findings
+
+- Analyzed 10,000 synthetic patient records and 50,000 organ assessment records.
+- Smoking exposure was the most frequently recorded largest simulated score component.
+- The heart had the highest average simulated severity score among the five organs.
+- The heart also recorded the highest number of simulated damaged assessments.
+- The liver had the lowest average simulated severity score and the highest number of healthy assessments.
+
+These findings describe patterns within the synthetic dataset only.
+
+## Repository Contents
+
+The repository includes:
+- CSV datasets
+- Python analysis notebook
+- SQL scripts
+- Power BI report
+- Organ images and image lookup data
+- Dashboard screenshots
+
+## Conclusion
+
+This project demonstrates an end-to-end data analytics workflow combining Python-based data exploration, SQL querying, and interactive Power BI dashboard development.
+
+It provided practical experience in data cleaning, exploratory data analysis, relational database management, analytical SQL, DAX calculations and interactive data visualization.
