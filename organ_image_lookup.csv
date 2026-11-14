@@ -1,0 +1,17 @@
+organ,simulated_organ_status,image_key,image_url
+Heart,Healthy,heart_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Heart_healthy.png
+Heart,At Risk,heart_at_risk,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Heart_at_risk.png
+Heart,Damaged,heart_damaged,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Heart_damaged.png
+Lungs,Healthy,lungs_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Lungs_healthy.png
+Lungs,At Risk,lungs_at_risk,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Lungs_at_risk.png
+Lungs,Damaged,lungs_damaged,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Lungs_damaged.png
+Kidneys,Healthy,kidneys_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Kidneys_healthy.png
+Kidneys,At Risk,kidneys_at_risk,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Kidneys_at_risk.png
+Kidneys,Damaged,kidneys_damaged,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Kidneys_damaged.png
+Liver,Healthy,liver_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Liver_healthy.png
+Liver,At Risk,liver_at_risk,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Liver_at_risk.png
+Liver,Damaged,liver_damaged,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Liver_damaged.png
+Brain,Healthy,brain_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Brain_healthy.png
+Brain,At Risk,brain_at_risk,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Brain_at_risk.png
+Brain,Damaged,brain_damaged,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Brain_damaged.png
+Human Body,Healthy,human_body_healthy,https://github.com/Geetha-016/smoking-exposure-organ-health-analysis/blob/main/organ_images/Human_Body.png
